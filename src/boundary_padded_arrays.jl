@@ -141,7 +141,7 @@ function Base.getindex(Q::BoundaryPaddedArray{T, D, N, M, V, B},
         return Q.lower[otherinds...]
     elseif inds[dim] == S[dim]
         return Q.upper[otherinds...]
-    elseif typeof(inds[dim]) <: Integer
+    elseif inds[dim] isa Integer
         inds[dim] = inds[dim] - 1
         return Q.u[inds...]
     elseif typeof(inds[dim]) == Colon
@@ -150,7 +150,7 @@ function Base.getindex(Q::BoundaryPaddedArray{T, D, N, M, V, B},
         else
             throw("A colon on the extended dim is as yet incompatible with additional colons")
         end
-    elseif typeof(inds[dim]) <: AbstractArray
+    elseif inds[dim] isa AbstractArray
         throw("Range indexing not yet supported!")
     end
 end

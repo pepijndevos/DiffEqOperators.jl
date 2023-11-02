@@ -128,7 +128,7 @@ Base.length(A::AbstractDerivativeOperator) = reduce(*, size(A))
     we throw an error (TODO: implement a proper transpose).
 =#
 function Base.transpose(A::DerivativeOperator)
-    typeof(A.dx) <: Real ? A :
+    A.dx isa Real ? A :
     error("Transpose for DerivativeOperator with non-uniform grid has yet to be implemented.")
 end
 Base.adjoint(A::DerivativeOperator) = A
